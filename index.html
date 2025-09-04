@@ -1,113 +1,204 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>The Future of Smart Machines</title>
-
   <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
-
   <header>
-
     <h1>The Future of Smart Machines</h1>
-
     <nav>
-
       <a href="#about">About</a>
-
       <a href="#projects">Projects</a>
-
       <a href="#contact">Contact</a>
-
     </nav>
-
   </header>
 
   <section id="about" class="about fade-in">
-
     <h2>About</h2>
-
     <p>
-
       Smart machines are revolutionizing industries with Artificial Intelligence, Robotics,
-
       and Automation. This portfolio showcases futuristic innovations, designs, and
-
       technologies shaping the future of smart machines.
-
     </p>
-
   </section>
 
   <section id="projects" class="projects fade-in">
-
     <h2>Projects</h2>
-
     <div class="projects-grid">
-
       <div class="card">
-
         <h3>AI Assistant</h3>
-
         <p>A voice-powered AI assistant that learns and adapts to user needs.</p>
-
       </div>
-
       <div class="card">
-
         <h3>Autonomous Robots</h3>
-
         <p>Robots capable of performing tasks with precision and efficiency.</p>
-
       </div>
-
       <div class="card">
-
         <h3>Smart Healthcare</h3>
-
         <p>AI-driven solutions for diagnosis, treatment, and patient monitoring.</p>
-
       </div>
-
       <div class="card">
-
         <h3>Future Mobility</h3>
-
         <p>Self-driving vehicles and smart traffic systems for safer roads.</p>
-
       </div>
-
     </div>
-
   </section>
 
   <section id="contact" class="contact fade-in">
-
     <h2>Contact</h2>
-
     <p>Let’s collaborate on the future of smart machines!</p>
-
     <button class="btn" onclick="alertMessage()">Get in Touch</button>
-
   </section>
 
   <footer>
-
     <p>&copy; 2025 Future of Smart Machines | Designed with ❤️</p>
-
   </footer>
 
   <script src="script.js"></script>
-
 </body>
-
 </html>
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0a0a0a;
+  color: #f1f1f1;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+header {
+  background: linear-gradient(90deg, #0f0f0f, #1a1a40);
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #00d4ff;
+  letter-spacing: 2px;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  margin: 0 15px;
+  color: #f1f1f1;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #00d4ff;
+}
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2rem;
+  color: #00d4ff;
+  margin-bottom: 20px;
+}
+
+.about, .projects, .contact {
+  max-width: 900px;
+  margin: auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 212, 255, 0.2);
+}
+
+footer {
+  background: #111;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #00d4ff;
+  color: #0a0a0a;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background: #00aacc;
+}
+
+/* Smooth fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-in-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+// Alert message on button click
+function alertMessage() {
+  alert("Thanks for reaching out! 🚀");
+}
+
+// Fade-in on scroll
+const faders = document.querySelectorAll('.fade-in');
+
+const appearOptions = {
+  threshold: 0.3,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("visible");
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
